@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07110e">
+<title>CYBER SCAN — Fun Security Check</title>
+<style>
+:root{--bg:#050b09;--panel:#0b1712;--line:#1b4533;--green:#54ff9a;--muted:#91a99a;--white:#e8fff0;--red:#ff6677}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#123b28 0%,var(--bg) 55%);color:var(--white);font:16px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;display:grid;place-items:center;padding:24px}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background:repeating-linear-gradient(0deg,transparent 0 3px,#1b4533 4px)}
+.wrap{width:min(100%,650px);position:relative}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border:1px solid var(--green);border-radius:12px;display:grid;place-items:center;color:var(--green);font-size:23px;box-shadow:0 0 22px #54ff9a20}.brand h1{font-size:18px;letter-spacing:2px;margin:0}.sub{font-size:11px;color:var(--muted);letter-spacing:1px}.live{font-size:11px;color:var(--green);border:1px solid var(--line);padding:5px 9px;border-radius:20px;white-space:nowrap}.card{border:1px solid var(--line);background:linear-gradient(145deg,#0b1712f5,#07100df5);border-radius:18px;overflow:hidden;box-shadow:0 24px 90px #0008}.bar{padding:12px 20px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;justify-content:space-between}.body{padding:clamp(20px,5vw,34px)}.tag{color:var(--green);font-size:12px;letter-spacing:2px}.headline{font-size:clamp(24px,6vw,36px);line-height:1.15;margin:10px 0}.desc{color:var(--muted);font-size:14px;margin:0 0 26px}.field{display:block;margin:18px 0 7px;font-size:12px;color:#b9d5c3}.inputwrap{display:flex;align-items:center;border:1px solid #24563d;background:#050c08;border-radius:10px;padding:0 12px}.inputwrap:focus-within{border-color:var(--green);box-shadow:0 0 0 3px #54ff9a15}input{width:100%;min-width:0;padding:14px 8px;background:transparent;border:0;outline:0;color:var(--white);font:inherit;font-size:14px}input::placeholder{color:#536b5b}.eye{background:none;border:0;color:var(--muted);cursor:pointer;font:inherit;font-size:12px;padding:8px}.hint{font-size:11px;color:var(--muted);margin-top:8px}.btn{width:100%;border:0;border-radius:10px;padding:15px;margin-top:24px;background:var(--green);color:#041008;font:700 13px inherit;letter-spacing:1px;cursor:pointer}.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.btn:disabled{opacity:.6;cursor:wait}.terminal{display:none;margin-top:22px;border:1px solid var(--line);border-radius:12px;background:#030805;padding:16px}.terminal.show{display:block}.log{color:var(--muted);font-size:12px;margin:5px 0}.log span{color:var(--green)}.progress{height:5px;background:#15251b;border-radius:8px;overflow:hidden;margin:14px 0}.fill{height:100%;width:0;background:var(--green);transition:width .35s}.result{display:none;text-align:center;margin-top:18px;padding:22px 12px;border:1px solid #1e7143;border-radius:12px;background:#082016}.result.show{display:block}.result .icon{font-size:36px;color:var(--green)}.result h2{margin:4px 0;color:var(--green);font-size:23px}.result p{font-size:13px;color:#b6eac9}.reveal{font-size:clamp(22px,6vw,32px);font-weight:bold;color:#fff;margin-top:14px;animation:pulse 1s infinite alternate}@keyframes pulse{to{text-shadow:0 0 18px #54ff9a;transform:scale(1.02)}}.smallprint{font-size:10px;color:#6f8a78;text-align:center;margin:18px 0 0}.footer{display:flex;justify-content:space-between;gap:12px;margin-top:14px;color:#6f8a78;font-size:10px;flex-wrap:wrap}.reset{display:none;background:transparent;color:var(--green);border:1px solid var(--line);padding:10px 15px;border-radius:8px;cursor:pointer;margin-top:14px}.reset.show{display:inline-block}.notice{font-size:11px;color:#a9c8b5;background:#0b2117;border:1px solid var(--line);padding:10px 12px;border-radius:8px;margin-top:18px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">⌁</div><div><h1>CYBER SCAN</h1><div class="sub">PERSONAL SECURITY TERMINAL // DEMO</div></div></div>
+    <div class="live">● SYSTEM ONLINE</div>
+  </header>
+  <section class="card">
+    <div class="bar"><span>SESSION: DEMO-LOCAL</span><span id="clock">SCANNER READY</span></div>
+    <div class="body">
+      <div class="tag">[ ACCOUNT EXPOSURE SIMULATOR ]</div>
+      <h2 class="headline">Is your password<br>safe? <span style="color:var(--green)">Let's scan.</span></h2>
+      <p class="desc">Run a totally fictional security scan. No real password is checked and nothing is sent to a server.</p>
+      <form id="scanForm">
+        <label class="field" for="email">EMAIL ADDRESS</label>
+        <div class="inputwrap"><span style="color:var(--green)">@</span><input id="email" type="email" placeholder="you@example.com" autocomplete="off" required maxlength="160"></div>
+        <label class="field" for="demoPass">DEMO PASSWORD <span style="color:var(--muted)">(made-up only)</span></label>
+        <div class="inputwrap"><span style="color:var(--green)">▣</span><input id="demoPass" type="password" placeholder="Type a fake password for the demo" autocomplete="new-password" required maxlength="80"><button class="eye" type="button" id="toggle">SHOW</button></div>
+        <div class="hint">⚠ Never enter your real email password. This field is only for a pretend demo.</div>
+        <button class="btn" id="scanBtn" type="submit">▶ INITIATE SECURITY SCAN</button>
+      </form>
+      <div class="terminal" id="terminal" aria-live="polite">
+        <div class="log"><span>[ OK ]</span> Initializing scan engine...</div>
+        <div class="log" id="line2">[ WAIT ] Analyzing demo input...</div>
+        <div class="progress"><div class="fill" id="fill"></div></div>
+        <div class="log" id="line3">[ WAIT ] Connecting to fictional database...</div>
+      </div>
+      <div class="result" id="result" aria-live="polite">
+        <div class="icon">✓</div><h2>NO LEAK FOUND</h2>
+        <p id="resultText">No real security check was performed.</p>
+        <div class="reveal">BRO, YOU GOT PRANKED! 😂</div>
+        <p>Your friend made this for fun. No password was uploaded or saved.</p>
+        <button class="reset" id="reset" type="button">RUN ANOTHER DEMO</button>
+      </div>
+      <div class="notice">PRIVACY MODE: This demo processes the text only in your browser. It does not save emails or passwords, and it never sends credentials to Google Sheets.</div>
+      <p class="smallprint">FICTIONAL SIMULATION • NOT A REAL BREACH CHECK • KEEP YOUR PASSWORDS PRIVATE</p>
+    </div>
+  </section>
+  <div class="footer"><span>ENCRYPTION: VISUAL ONLY</span><span>BUILD 1.0 // FOR FUN</span><span>NO CREDENTIAL STORAGE</span></div>
+</main>
+<script>
+const form=document.getElementById('scanForm'), pass=document.getElementById('demoPass'), toggle=document.getElementById('toggle');
+toggle.addEventListener('click',()=>{const show=pass.type==='password';pass.type=show?'text':'password';toggle.textContent=show?'HIDE':'SHOW';});
+form.addEventListener('submit',e=>{
+ e.preventDefault();
+ const email=document.getElementById('email').value.trim();
+ if(!email||!pass.value)return;
+ document.getElementById('terminal').classList.add('show');
+ document.getElementById('result').classList.remove('show');
+ document.getElementById('reset').classList.remove('show');
+ const btn=document.getElementById('scanBtn');btn.disabled=true;btn.textContent='SCANNING...';
+ const fill=document.getElementById('fill');fill.style.width='0%';
+ document.getElementById('line2').textContent='[ RUN ] Simulating password exposure check...';
+ document.getElementById('line3').textContent='[ WAIT ] Preparing prank reveal...';
+ let progress=0;
+ const timer=setInterval(()=>{
+   progress+=20;fill.style.width=progress+'%';
+   if(progress>=100){
+     clearInterval(timer);
+     document.getElementById('line2').textContent='[ OK ] Demo scan completed.';
+     document.getElementById('line3').textContent='[ OK ] No credentials were transmitted.';
+     document.getElementById('resultText').textContent='Demo completed for '+email+'. This is a prank result, not a real leak report.';
+     document.getElementById('result').classList.add('show');
+     document.getElementById('reset').classList.add('show');
+     btn.disabled=false;btn.textContent='▶ INITIATE SECURITY SCAN';
+     // Discard the demo password immediately after the animation.
+     pass.value='';pass.type='password';toggle.textContent='SHOW';
+   }
+ },350);
+});
+document.getElementById('reset').addEventListener('click',()=>{
+ document.getElementById('result').classList.remove('show');
+ document.getElementById('terminal').classList.remove('show');
+ document.getElementById('fill').style.width='0%';
+ document.getElementById('email').value='';pass.value='';document.getElementById('clock').textContent='SCANNER READY';
+});
+</script>
+</body></html>
